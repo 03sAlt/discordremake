@@ -10,7 +10,6 @@ local HttpService = game:GetService("HttpService")
 local pfp
 local user
 local tag
-local executor
 local userinfo = {}
 
 pcall(function()
@@ -20,13 +19,12 @@ end)
 pfp = userinfo["pfp"] or "https://www.roblox.com/headshot-thumbnail/image?userId=".. game.Players.LocalPlayer.UserId .."&width=420&height=420&format=png"
 user =  userinfo["user"] or game.Players.LocalPlayer.Name
 tag = userinfo["tag"] or tostring(math.random(1000,9999))
-executor = userinfo["executor"] or identifyexecutor()
 
 local function SaveInfo()
 	userinfo["pfp"] = pfp
 	userinfo["user"] = user
 	userinfo["tag"] = tag
-    userinfo["executor"] = executor
+  
 	writefile("discordinfo.txt", HttpService:JSONEncode(userinfo));
 end
 
