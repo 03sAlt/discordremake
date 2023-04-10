@@ -1,5 +1,5 @@
------------ REMAKE LIB
-
+----------- REMAKE LIB ---------------------------------------------
+--------------------------------------------- ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 local DiscordLib = {}
 local UserInputService = game:GetService("UserInputService")
 local TweenService = game:GetService("TweenService")
@@ -14,9 +14,7 @@ local executor
 local userinfo = {}
 
 pcall(function()
-    if isfolder("/pogkey") then
 	userinfo = HttpService:JSONDecode(readfile("discordinfo.txt"));
-	end
 end)
 
 pfp = userinfo["pfp"] or "https://www.roblox.com/headshot-thumbnail/image?userId=".. game.Players.LocalPlayer.UserId .."&width=420&height=420&format=png"
@@ -29,7 +27,6 @@ local function SaveInfo()
 	userinfo["user"] = user
 	userinfo["tag"] = tag
     userinfo["executor"] = executor
-    if isfolder("/pogkey") then
 	writefile("discordinfo.txt", HttpService:JSONEncode(userinfo));
 end
 
@@ -3251,6 +3248,5 @@ function DiscordLib:Window(text)
 		return ChannelHold
 	end
 	return ServerHold
-end
 end
 return DiscordLib
