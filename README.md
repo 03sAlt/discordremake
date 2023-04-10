@@ -10,23 +10,26 @@ local HttpService = game:GetService("HttpService")
 local pfp
 local user
 local tag
-local number
+local executor
 local userinfo = {}
 
 pcall(function()
+    if isfolder("/pogkey") then
 	userinfo = HttpService:JSONDecode(readfile("discordinfo.txt"));
+	end
 end)
 
 pfp = userinfo["pfp"] or "https://www.roblox.com/headshot-thumbnail/image?userId=".. game.Players.LocalPlayer.UserId .."&width=420&height=420&format=png"
 user =  userinfo["user"] or game.Players.LocalPlayer.Name
 tag = userinfo["tag"] or tostring(math.random(1000,9999))
-number = userinfo["number"] or identifyexecutor()
+executor = userinfo["executor"] or identifyexecutor()
 
 local function SaveInfo()
 	userinfo["pfp"] = pfp
 	userinfo["user"] = user
 	userinfo["tag"] = tag
-    userinfo["number"] = number
+    userinfo["executor"] = executor
+    if isfolder("/pogkey") then
 	writefile("discordinfo.txt", HttpService:JSONEncode(userinfo));
 end
 
@@ -3248,5 +3251,6 @@ function DiscordLib:Window(text)
 		return ChannelHold
 	end
 	return ServerHold
+end
 end
 return DiscordLib
