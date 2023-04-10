@@ -14,7 +14,7 @@ local number
 local userinfo = {}
 
 pcall(function()
-	userinfo = HttpService:JSONDecode(readfile("discord.txt"));
+	userinfo = HttpService:JSONDecode(readfile("discordinfo.txt"));
 end)
 
 pfp = userinfo["pfp"] or "https://www.roblox.com/headshot-thumbnail/image?userId=".. game.Players.LocalPlayer.UserId .."&width=420&height=420&format=png"
@@ -27,7 +27,7 @@ local function SaveInfo()
 	userinfo["user"] = user
 	userinfo["tag"] = tag
     userinfo["number"] = number
-	writefile("discord.txt", HttpService:JSONEncode(userinfo));
+	writefile("discordinfo.txt", HttpService:JSONEncode(userinfo));
 end
 
 local function MakeDraggable(topbarobject, object)
