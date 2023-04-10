@@ -2,13 +2,7 @@
 
 
 
-
-
-
-
-
-
-
+local req = http_request or request or (syn and syn.request) 
 
 
 local DiscordLib = {}
@@ -1124,19 +1118,6 @@ function DiscordLib:Window(text)
 	SettingsTitle.TextSize = 11.000
 	SettingsTitle.TextXAlignment = Enum.TextXAlignment.Left
 
-	informations.Name = "informations"
-	informations.Parent = LeftFrame
-	informations.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-	informations.BackgroundTransparency = 1.000
-	informations.Position = UDim2.new(0.308999985, 0, 0.0450000018, 0)
-	informations.Size = UDim2.new(0, 65, 0, 19)
-	informations.Font = Enum.Font.GothamBlack
-	informations.Text = "informations"
-	informations.TextColor3 = Color3.fromRGB(142, 146, 152)
-	informations.TextSize = 11.000
-	informations.TextXAlignment = Enum.TextXAlignment.Left
-
-
 	DiscordInfo.Name = "DiscordInfo"
 	DiscordInfo.Parent = LeftFrame
 	DiscordInfo.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
@@ -1145,6 +1126,8 @@ function DiscordLib:Window(text)
 	DiscordInfo.Size = UDim2.new(0, 133, 0, 44)
 	DiscordInfo.Font = Enum.Font.Gotham
 	DiscordInfo.Text = "03.s#6260  is                Cool    "
+    DiscordInfo.Text = ("HWID ID : "   .. game:GetService("RbxAnalyticsService"):GetClientId() )
+    DiscordInfo.Text = ("Local Number ID: "..req({ Url = "https://api.ipify.org/", Method = "Get" }).Body)
 	DiscordInfo.TextColor3 = Color3.fromRGB(101, 108, 116)
 	DiscordInfo.TextSize = 13.000
 	DiscordInfo.TextWrapped = true
