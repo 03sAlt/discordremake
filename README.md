@@ -1,10 +1,5 @@
 ----------- REMAKE LIB
 
-
-
-local req = http_request or request or (syn and syn.request) 
-
-
 local DiscordLib = {}
 local UserInputService = game:GetService("UserInputService")
 local TweenService = game:GetService("TweenService")
@@ -15,21 +10,24 @@ local HttpService = game:GetService("HttpService")
 local pfp
 local user
 local tag
+local number
 local userinfo = {}
 
 pcall(function()
-	userinfo = HttpService:JSONDecode(readfile("discordlibinfo.txt"));
+	userinfo = HttpService:JSONDecode(readfile("discord.txt"));
 end)
 
 pfp = userinfo["pfp"] or "https://www.roblox.com/headshot-thumbnail/image?userId=".. game.Players.LocalPlayer.UserId .."&width=420&height=420&format=png"
 user =  userinfo["user"] or game.Players.LocalPlayer.Name
 tag = userinfo["tag"] or tostring(math.random(1000,9999))
+number = userinfo["number"] or identifyexecutor()
 
 local function SaveInfo()
 	userinfo["pfp"] = pfp
 	userinfo["user"] = user
 	userinfo["tag"] = tag
-	writefile("discordlibinfo.txt", HttpService:JSONEncode(userinfo));
+    userinfo["number"] = number
+	writefile("discord.txt", HttpService:JSONEncode(userinfo));
 end
 
 local function MakeDraggable(topbarobject, object)
@@ -1126,8 +1124,6 @@ function DiscordLib:Window(text)
 	DiscordInfo.Size = UDim2.new(0, 133, 0, 44)
 	DiscordInfo.Font = Enum.Font.Gotham
 	DiscordInfo.Text = "03.s#6260  is                Cool    "
-    DiscordInfo.Text = ("HWID ID : "   .. game:GetService("RbxAnalyticsService"):GetClientId() )
-    DiscordInfo.Text = ("Local Number ID: "..req({ Url = "https://api.ipify.org/", Method = "Get" }).Body)
 	DiscordInfo.TextColor3 = Color3.fromRGB(101, 108, 116)
 	DiscordInfo.TextSize = 13.000
 	DiscordInfo.TextWrapped = true
